@@ -6,7 +6,17 @@
 
 Vibo turns the progress your coding agent reports into a local project dashboard: delivery goals, remaining work, checks, and things that need your attention. Keep coding in your usual conversation; check the board when you want the full picture.
 
-## Get started
+## Online preview — no local server required
+
+[Open Vibo online](https://vibo.bryceyufeng.workers.dev) · [Remote MCP endpoint](https://vibo.bryceyufeng.workers.dev/mcp)
+
+Start without an account. Choose your coding tool on the website, connect the remote MCP server, approve browser authorization, then ask your project agent to track this project with Vibo. The agent follows the server's reporting instructions during normal development.
+
+Online Vibo stores progress records in Cloudflare. It does not upload source code or read every conversation. Existing local records stay on your device unless you explicitly select an export to import. Guest access depends on this browser or a still-authorized agent connection; do not promise recovery after both are lost.
+
+**Preview status:** browser authorization, the official MCP client, progress reports, and live page updates have been verified against the deployed service. Native Codex, Cursor and Claude Code setup still needs host-specific testing; some tools may require manual MCP configuration or a new conversation. Account login is being configured and is not yet advertised as available. The local 0.9.1 package below remains supported.
+
+## Local version
 
 **Current preview: macOS + Codex. Requires Node.js 22.13 or newer.**
 
