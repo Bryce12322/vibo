@@ -12,9 +12,9 @@ Vibo turns the progress your coding agent reports into a local project dashboard
 
 Start without an account. Choose your coding tool on the website, connect the remote MCP server, approve browser authorization, then ask your project agent to track this project with Vibo. The agent follows the server's reporting instructions during normal development.
 
-Online Vibo stores progress records in Cloudflare. It does not upload source code or read every conversation. Existing local records stay on your device unless you explicitly select an export to import. Guest access depends on this browser or a still-authorized agent connection; do not promise recovery after both are lost.
+Online Vibo stores progress records in Cloudflare. It does not upload source code or read every conversation. Existing local records stay on your device unless you explicitly select an export to import. Guest access depends on this browser or a still-authorized agent connection. Sign in to link your guest projects to an account before switching devices; without that link or a valid agent connection, recovery is not guaranteed.
 
-**Preview status:** browser authorization, the official MCP client, progress reports, and live page updates have been verified against the deployed service. Native Codex, Cursor and Claude Code setup still needs host-specific testing; some tools may require manual MCP configuration or a new conversation. Account login is being configured and is not yet advertised as available. The local 0.9.1 package below remains supported.
+**Preview status:** browser authorization, the official MCP client, progress reports, and live page updates have been verified against the deployed service. Native Codex, Cursor and Claude Code setup still needs host-specific testing; some tools may require manual MCP configuration or a new conversation. Optional GitHub sign-in is enabled. Real sign-in, retention of guest project IDs and progress, and recovery in two independent browser sessions have been verified. The local 0.9.1 package below remains supported.
 
 ## Local version
 
