@@ -10,15 +10,32 @@ Vibo turns the progress your coding agent reports into a local project dashboard
 
 **Current preview: macOS + Codex. Requires Node.js 22.13 or newer.**
 
-1. [Download vibo-local-v0.9.1.zip](https://github.com/Bryce12322/vibo/releases/download/v0.9.1/vibo-local-v0.9.1.zip) and unzip it.
-2. Open **Install Vibo.command**, or give the extracted folder to Codex and ask it to install the bundled Vibo skill. The installer is not Apple-signed or notarized.
-3. Start a new Codex chat in your actual project and say:
+### Install with one message
+
+Copy this into Codex:
+
+> Install Vibo for me from https://github.com/Bryce12322/vibo — download, verify, unzip and install its Codex skill.
+
+Codex can complete the download, checksum verification, extraction and installation for you. You do not need to download or unzip the package yourself. It may request permission to access the network or install local files; approve the request to continue. If Node.js is missing or too old, Codex will explain the requirement before proceeding.
+
+Vibo installs as a local **Codex skill**, named `track-project`. [Installation steps for coding agents](INSTALL.md) include the exact release URLs and commands. Download the release asset, not GitHub's automatic “Source code” ZIP.
+
+### Use it in your project
+
+After installation, say in your actual project chat:
 
 > Track this project with Vibo and open its board.
 
-Continue developing normally. After you enable tracking, the agent is instructed to report meaningful progress without a separate synchronization prompt. If the skill is not discovered, start a new chat or restart Codex and explicitly use `$track-project`.
+If Codex has not loaded the newly installed skill, send the instruction in a new chat or restart Codex and explicitly use `$track-project`. Continue developing normally; the agent is instructed to report meaningful progress without a separate synchronization prompt.
 
 To add another project, enable Vibo in that project's own conversation. Both appear in the same local dashboard.
+
+<details>
+<summary>Prefer manual installation?</summary>
+
+[Download vibo-local-v0.9.1.zip](https://github.com/Bryce12322/vibo/releases/download/v0.9.1/vibo-local-v0.9.1.zip), unzip it, then open **Install Vibo.command**. The installer is not Apple-signed or notarized.
+
+</details>
 
 ## What you can see
 
