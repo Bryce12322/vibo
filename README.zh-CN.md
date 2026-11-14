@@ -10,15 +10,32 @@ Vibo 把 Agent 上报的进展整理成可视化看板：项目要达成什么�
 
 **当前支持 macOS + Codex，需要 Node.js 22.13 或更新版本。**
 
-1. [下载 vibo-local-v0.9.1.zip](https://github.com/Bryce12322/vibo/releases/download/v0.9.1/vibo-local-v0.9.1.zip)，解压。
-2. 打开 **Install Vibo.command**；也可以把解压后的文件夹交给 Codex，让它安装其中的 Vibo Skill。当前安装文件尚未经过 Apple 签名或公证。
-3. 在实际项目中开启一个新的 Codex 对话，说：
+### 一句话安装
+
+把这句话发给 Codex：
+
+> 帮我安装 Vibo：https://github.com/Bryce12322/vibo，请自动完成下载、校验、解压和 Skill 安装。
+
+Codex 可以替你完成整个安装流程，不需要手动下载、解压或打开安装文件。如果 Codex 请求联网或本地安装授权，同意后即可继续。缺少 Node.js 或版本过低时，Codex 会先说明需要补齐的环境。
+
+Vibo 以本地 **Codex Skill** 的形式安装，Skill 名称为 `track-project`。[给 Codex 的安装指引](INSTALL.md)提供了明确的下载地址和操作步骤。使用 Release 中的安装包，不要选择 GitHub 自动生成的“Source code”压缩包。
+
+### 在项目中使用
+
+安装后，在实际项目对话中说：
 
 > 用 Vibo 跟踪这个项目，并打开看板。
 
-接下来正常描述开发需求即可。启用后，Agent 会按规则在计划变化、开始工作、实现结束、检查结果或需要你操作时上报，不需要单独发送“同步进展”。如果未发现 Skill，开启新对话或重启 Codex，再用 `$track-project` 明确调用。
+如果 Codex 尚未加载刚安装的 Skill，开启新对话或重启 Codex 后再试，也可以用 `$track-project` 明确调用。接下来正常描述开发需求即可，Agent 会按规则上报进展，不需要每次单独说“同步进展”。
 
 增加其他项目时，在那个项目自己的对话中启用 Vibo，左侧项目栏就会出现它。
+
+<details>
+<summary>希望手动安装？</summary>
+
+[下载 vibo-local-v0.9.1.zip](https://github.com/Bryce12322/vibo/releases/download/v0.9.1/vibo-local-v0.9.1.zip)，解压后打开 **Install Vibo.command**。当前安装文件尚未经过 Apple 签名或公证。
+
+</details>
 
 ## 能看到什么
 
