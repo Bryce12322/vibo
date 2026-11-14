@@ -1,4 +1,27 @@
-# Install Vibo with Codex / 让 Codex 安装 Vibo
+# Set up Vibo / 接入 Vibo
+
+## Online version — recommended / 线上版：默认推荐
+
+Online Vibo requires no local Vibo server or Node.js. Follow [CONNECT.md](CONNECT.md) to configure remote MCP, complete browser authorization and load persistent reporting rules.
+
+默认连接线上版，无需下载本地 ZIP、克隆本仓库或安装本地运行服务。Agent 请先阅读 [CONNECT.md](CONNECT.md)，按当前宿主支持的方式配置连接、完成浏览器授权并加载持续汇报规则。不要因用户说“安装 Vibo”就默认安装旧版本地包。
+
+> 请按照 https://github.com/Bryce12322/vibo 的接入指南，为当前编码工具连接 Vibo 并加载持续汇报规则，引导我完成必要授权，然后跟踪当前项目、同步已有计划并打开看板，后续开发有实际进展时主动更新。
+
+> Follow the setup guide at https://github.com/Bryce12322/vibo to connect Vibo to this coding tool and load its ongoing reporting rules, guide me through required authorization, then track this project, sync its existing plan, open the dashboard, and report meaningful progress during development.
+
+Dashboard: https://vibo.bryceyufeng.workers.dev  
+MCP: https://vibo.bryceyufeng.workers.dev/mcp
+
+Required permissions, manual configuration or a new conversation may still be needed in the host. Do not claim a working connection until the tools are actually available. Do not silently overwrite an existing local setup or upload its records.
+
+宿主要求的授权、手动设置或开启新对话仍可能需要用户操作。必须验证工具实际可调用后才能宣布接入完成。已有本地安装和项目记录不得静默覆盖或迁移。
+
+## Local version / 本地版
+
+The rest of this document applies **only when the user explicitly chooses local 0.9.1 on macOS + Codex**.
+
+以下步骤**仅适用于用户明确选择 macOS + Codex 的 0.9.1 本地版**。
 
 Users can ask / 用户可以直接说：
 
