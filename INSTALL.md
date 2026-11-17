@@ -6,9 +6,9 @@ Online Vibo requires no local Vibo server or Node.js. Follow [CONNECT.md](CONNEC
 
 默认连接线上版，无需下载本地 ZIP、克隆本仓库或安装本地运行服务。Agent 请先阅读 [CONNECT.md](CONNECT.md)，按当前宿主支持的方式配置连接、完成浏览器授权并加载持续汇报规则。不要因用户说“安装 Vibo”就默认安装旧版本地包。
 
-> 请按照 https://github.com/Bryce12322/vibo 的接入指南，为当前编码工具连接 Vibo 并加载持续汇报规则，引导我完成必要授权，然后跟踪当前项目、同步已有计划并打开看板，后续开发有实际进展时主动更新。
+> 请按照 https://github.com/Bryce12322/vibo 的接入指南，为当前编码工具连接 Vibo 并加载持续汇报规则，引导我完成必要授权，然后跟踪当前项目、同步已有计划，并优先在当前工具的内置浏览器打开看板（不支持时再用外部浏览器），后续开发有实际进展时主动更新。
 
-> Follow the setup guide at https://github.com/Bryce12322/vibo to connect Vibo to this coding tool and load its ongoing reporting rules, guide me through required authorization, then track this project, sync its existing plan, open the dashboard, and report meaningful progress during development.
+> Follow the setup guide at https://github.com/Bryce12322/vibo to connect Vibo to this coding tool and load its ongoing reporting rules, guide me through required authorization, then track this project, sync its existing plan, open the dashboard in this tool’s built-in browser first (external browser only as a fallback), and report meaningful progress during development.
 
 Dashboard: https://vibo.bryceyufeng.workers.dev  
 MCP: https://vibo.bryceyufeng.workers.dev/mcp
@@ -40,7 +40,7 @@ When a user asks to install Vibo, perform the steps below using available tools 
 3. Verify SHA256 before extracting or executing the installer. Stop on download or checksum failure. / 先校验，再解压执行；下载或校验失败时停止。
 4. Extract using macOS `ditto`, then run `bash "<extracted>/vibo-local/Install Vibo.command"`. This installs the complete `track-project` skill and bundled runtime into `~/.agents/skills/track-project` by default, backing up an existing installation. / 安装器包含完整运行文件，会备份旧版安装。
 5. Verify the installed CLI with `--help`; optionally run `doctor` to inspect installation. A first installation can report “no project yet” or “service not running”; those do not mean the skill installation failed. Do not create a project or start tracking unless the user also requested it. / 检查安装入口；首次没有项目或服务尚未启动是正常情况，不擅自开始跟踪。
-6. Tell the user installation succeeded, where the skill was installed and how to enable it in their project. It should become available on a subsequent turn; if their Codex session has not discovered it, suggest a new chat or restart and `$track-project`. / 告知安装结果和启用方法；如未被宿主发现，再开启新对话或重启。
+6. For the local dashboard, use `connect --open-link` / `open --open-link` and open the returned one-time URL in the host’s built-in browser first; use `--open` only for an explicit external-browser request or a real fallback. / 本地看板也优先使用宿主内置浏览器；`--open` 仅用于明确的外部浏览器请求或回退。\n\n7. Tell the user installation succeeded, where the skill was installed and how to enable it in their project. It should become available on a subsequent turn; if their Codex session has not discovered it, suggest a new chat or restart and `$track-project`. / 告知安装结果和启用方法；如未被宿主发现，再开启新对话或重启。
 
 Vibo is distributed as a **Codex skill**, rather than a marketplace extension. The repository root and GitHub-generated “Source code” archives contain distribution documentation, not the complete runtime. Do not install the repository root as a skill or download only `SKILL.md`.
 
