@@ -46,9 +46,11 @@ The online service does not require a local Vibo server, local database, Node.js
 
    **同步真实计划。** 复用已有上下文并增量更新；无法确定的内容保持待归类或未知。实现、检查和人工验收是不同维度。
 
-8. **Open the dashboard.** Call `open_dashboard`. Open its one-time `open_url` privately when the host can open a browser; return only `dashboard_url` in the final reply. If the host cannot open a page, explain how to open the supplied link safely.
+8. **Open the dashboard in-app first.** Call `open_dashboard` and follow `browser_preference` / `opening_instructions`. Prefer the coding tool's built-in browser beside the conversation, reusing the current project tab when possible. In Codex, if `open_in_codex` is available, use `placement:"right"` with `target:{type:"browser",url:open_url}`; otherwise use its supported in-app browser tool. Do not default to shell `open`, `xdg-open`, Python `webbrowser`, Chrome or the system browser. Use an external browser only if the user requests it, the host has no built-in browser, or a real in-app opening attempt fails. If the host cannot open any page, supply the normal dashboard link.
 
-   **打开看板。** 不把长期令牌或一次性连接票据写进公开说明和最终回复。
+   OAuth authorization may happen in an external browser; keep the dashboard preference in-app. Browser sessions are separate. If needed, sign in to the same Vibo account in-app; do not copy browser cookies or create a duplicate project. Open `open_url` privately once; if consumed or expired, request a new link before changing browsers. Only share `dashboard_url` in the final reply. Verify the page when possible; requesting a tab does not prove it opened.
+
+   **优先在 Agent 内置浏览器打开看板。** 在支持的宿主中与对话并排展示；Codex 优先使用可用的 `open_in_codex` 右侧网页面板或内置浏览器工具。尽量复用当前项目标签，不默认调用系统浏览器。仅在用户指定、宿主不支持或实际开页失败时回退。登录授权可以由宿主打开到外部，但看板仍优先内置；必要时在内置浏览器登录同一账号，不复制 Cookie、不重建项目。一次性链接过期或已消费后需重新获取，不在多个浏览器反复使用。
 
 9. **Continue reporting during normal work.** Follow the service rules for plan changes, task start, implementation, checks actually performed, user-action blockers and session completion. No separate “sync progress” request should be required after tracking is enabled. Reuse event IDs on retries; reread and compare on revision conflicts. Heartbeats indicate actual work, never simulated activity. Model compliance still depends on the host loading the rules; do not promise a background monitor.
 
