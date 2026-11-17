@@ -10,7 +10,7 @@ Vibo turns progress reported by your coding agent into a project dashboard: deli
 
 Send this in your actual project conversation:
 
-> Follow the setup guide at https://github.com/Bryce12322/vibo to connect Vibo to this coding tool and load its ongoing reporting rules, guide me through required authorization, then track this project, sync its existing plan, open the dashboard, and report meaningful progress during development.
+> Follow the setup guide at https://github.com/Bryce12322/vibo to connect Vibo to this coding tool and load its ongoing reporting rules, guide me through required authorization, then track this project, sync its existing plan, open the dashboard in this tool’s built-in browser first (external browser only as a fallback), and report meaningful progress during development.
 
 Online Vibo requires no local Vibo service or Node.js. Your agent can perform the setup allowed by its host and guide you through required permissions. Some hosts need manual MCP setup, a new conversation or a restart; fully automatic installation is not guaranteed for every tool. [Agent setup procedure](CONNECT.md).
 
@@ -18,7 +18,7 @@ Online Vibo requires no local Vibo service or Node.js. Your agent can perform th
 
 1. Connect the remote MCP server and authorize it in the browser; no account is required.
 2. The agent associates this project and syncs goals and tasks from real context.
-3. Open the online board to see remaining work, implemented work and requests for your input.
+3. Open the board in the agent’s built-in browser beside the conversation. Use an external browser if in-app browsing is unsupported or fails.
 4. Continue developing. The agent follows loaded rules to report progress without a separate synchronization request.
 
 MCP URL: `https://vibo.bryceyufeng.workers.dev/mcp`. Transport: Streamable HTTP with browser OAuth. See [CONNECT.md](CONNECT.md) for configuration and ongoing reporting.
