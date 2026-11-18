@@ -4,9 +4,9 @@
 
 [English](README.md) · [安装指南](INSTALL.md) · [本地体验版 0.9.2](https://github.com/Bryce12322/vibo/releases/tag/v0.9.2)
 
-## 在项目里说一句
+## 复制到你的项目对话，安装并开始使用
 
-> 请按照 https://github.com/Bryce12322/vibo 的安装指南，为当前工具安装 Vibo 本地版，读取持续汇报规则，跟踪当前项目并同步已有计划，优先在内置浏览器打开看板，后续开发主动更新实际进展。已有线上关联请先识别并保留。
+> 请阅读 https://github.com/Bryce12322/vibo/blob/main/INSTALL.md ，自动下载、校验并安装适配当前工具的 Vibo 本地版，接着读取汇报规则、同步当前项目的已有计划，优先在内置浏览器打开看板，并在后续开发中主动更新真实进展。
 
 默认使用 **Skill＋CLI**，进展保存在本机。首次使用无需配置 MCP 连接器、OAuth 或账号。宿主命令执行权限按提示确认。
 
