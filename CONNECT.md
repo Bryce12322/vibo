@@ -30,7 +30,7 @@ The online service does not require a local Vibo server, local database, Node.js
 
    **完成浏览器授权。** 无需注册也能使用核心功能。GitHub 登录用于跨端找回项目。已有记录时使用对应浏览器或账号，避免连接到另一个空空间。
 
-4. **Verify the actual tools.** Confirm these tools are discoverable and callable: `get_project_context`, `read_updates`, `connect_project`, `sync_plan`, `report_event`, `session_heartbeat`, `open_dashboard`. Read the server's initialization instructions. A saved config alone is not a working connection. Some hosts require a new conversation or restart; say so if tools are not yet available.
+4. **Verify the actual tools immediately, before project setup or history work.** Confirm these tools are discoverable and callable: `get_project_context`, `read_updates`, `connect_project`, `sync_plan`, `report_event`, `session_heartbeat`, `open_dashboard`, and `submit_progress`. Read the server's initialization instructions. A saved config alone is not a working connection. Some hosts require reloading the connection or a new conversation. If the tools are missing, stop onboarding immediately and give that precise next step. Reuse valid authorization; do not repeatedly authorize, install the local runtime, update a local project, or open localhost as a substitute.
 
    **验证实际可用性。** 配置已保存不等于连接已生效。若宿主尚未加载工具，引导重新开启对话或重启后继续，不捏造工具调用结果。
 
@@ -42,7 +42,7 @@ The online service does not require a local Vibo server, local database, Node.js
 
    **关联正确项目。** 跨对话复用稳定标识，不因新对话或切换工具重复建项目。没有实际项目上下文时先确认项目，不创建虚假的示例冒充用户项目。
 
-7. **Sync real context incrementally.** Organize delivery goals, modules and tasks from the current project's actual context. Preserve existing IDs, ordering, implementation status, checks and history. Create modules before referencing their returned IDs in tasks. Do not mark historical work complete without evidence, invent dependencies, or upload source code and full conversations.
+7. **Sync real context incrementally.** Organize delivery goals, modules and tasks from the current project's actual context. Preserve existing IDs, ordering, implementation status, checks and history. Prefer `submit_progress` to submit goals, modules, tasks and real events atomically in one call. Use unique `client_id` values for new records and reference them in `module_id`, `goal_id`, `depends_on` and event `task_id`; use existing `id` values for updates. Supply `project_id`, `session_id`, `base_revision` and a UUID `request_id`. Reuse the same request ID and content on retries. The result returns the saved project, revision and ID map. Legacy `sync_plan` remains compatible. Do not mark historical work complete without evidence, invent dependencies, or upload source code and full conversations.
 
    **同步真实计划。** 复用已有上下文并增量更新；无法确定的内容保持待归类或未知。实现、检查和人工验收是不同维度。
 
@@ -56,7 +56,9 @@ The online service does not require a local Vibo server, local database, Node.js
 
    **正常开发时主动汇报。** 不需要用户反复提醒同步；但服务不会自动监听所有对话，不能承诺模型永远不会漏报。
 
-10. **Report the outcome accurately.** State which host was configured, whether tools are actually available, whether rules are loaded, and which project was connected. Provide the dashboard link and any remaining user action. Only say setup is complete after the relevant checks pass.
+10. **Report the outcome accurately.** State which host was configured, whether tools are actually available, whether rules are loaded, and which project was connected. Provide the dashboard link and any remaining user action. Only say setup is complete after a real remote submission returns the intended saved project and task content, and the opened dashboard uses the online service origin. Authorization success and local updates are not online project success.
+
+    **完成门槛：** 实际线上提交成功、返回的项目与事项核对一致、打开的看板属于线上服务，才算接入完成。工具未加载时立即说明，不回退本地，不重复授权。旧本地记录迁移与新项目接入单独处理。
 
     **如实交付结果。** 区分“已配置”“已连接”“已加载规则”“已开始跟踪”，未完成的步骤明确说明。
 
