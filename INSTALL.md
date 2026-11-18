@@ -1,86 +1,32 @@
-# Set up Vibo / 接入 Vibo
+# 安装 Vibo / Install Vibo
 
-## Online version — recommended / 线上版：默认推荐
+默认安装 **0.9.2 本地体验版**，使用 Skill＋CLI。macOS，需要 Node.js 22.13+。无需配置 MCP 连接器或 OAuth。明确选择线上版或已有 mode:cloud 关联时，按 [线上说明](CONNECT.md#online)处理。
 
-Online Vibo requires no local Vibo server or Node.js. Follow [CONNECT.md](CONNECT.md) to configure remote MCP, complete browser authorization and load persistent reporting rules.
+> 请根据本指南自动下载、校验、解压并安装 Vibo 本地版，按当前宿主选择技能目录，读取规则后跟踪当前项目，优先在内置浏览器打开看板。
 
-默认连接线上版，无需下载本地 ZIP、克隆本仓库或安装本地运行服务。Agent 请先阅读 [CONNECT.md](CONNECT.md)，按当前宿主支持的方式配置连接、完成浏览器授权并加载持续汇报规则。不要因用户说“安装 Vibo”就默认安装旧版本地包。
+## Agent 执行步骤
 
-> 请按照 https://github.com/Bryce12322/vibo 的接入指南，为当前编码工具连接 Vibo 并加载持续汇报规则，引导我完成必要授权，然后跟踪当前项目、同步已有计划，并优先在当前工具的内置浏览器打开看板（不支持时再用外部浏览器），后续开发有实际进展时主动更新。
+1. 识别实际宿主、项目目录和已有 .vibo/project.json。已有 cloud 关联继续保留，不能自动重复创建本地项目。
+2. 检查 macOS 和 Node.js 22.13+。WorkBuddy 的自带版本由 ~/.workbuddy/binaries/node/versions/current 文件指定，实际 Node 位于该版本目录的 bin/node。核对后使用。缺少运行环境时给出具体原因。
+3. 下载下面两个文件到临时目录。按固定 SHA256 和校验文件检查包，通过后解压。仓库根目录及自动 Source code ZIP 不含完整运行包。
+4. 解压目录为 qingzhou-local。Codex 执行 bash "qingzhou-local/Install Vibo.command" --host codex，WorkBuddy 传 --host workbuddy。也可用已确认的 Node 执行同目录 install.mjs --host <宿主>。
+5. 安装器返回 skill_path、cli_path、node_path。默认 Codex ~/.agents/skills/track-project，WorkBuddy ~/.workbuddy/skills/track-project。仅在确认宿主实际目录不同时用 FLOW_SKILL_DIR 覆盖。升级备份旧 Skill。
+6. 立即读取安装后的 SKILL.md 并使用同一 CLI。仅安装时 --help 即可验证。用户已要求跟踪时，context → connect → submit 保存当前计划 → open --open-link → 内置浏览器。
+7. 核对每步结果。首次先展示当前计划，不要求扫描整个仓库、导入全部历史或运行项目测试。宿主未发现 Skill 时可直接读取其完整路径执行当前流程，后续自动触发仍需宿主加载规则。
+8. 启用后通过宿主支持的项目规则引用 Skill，限定当前项目。持续报告在正常开发中主动进行，新对话恢复同一项目。
 
-> Follow the setup guide at https://github.com/Bryce12322/vibo to connect Vibo to this coding tool and load its ongoing reporting rules, guide me through required authorization, then track this project, sync its existing plan, open the dashboard in this tool’s built-in browser first (external browser only as a fallback), and report meaningful progress during development.
+## 下载与校验 / Downloads
 
-Dashboard: https://vibo.bryceyufeng.workers.dev  
-MCP: https://vibo.bryceyufeng.workers.dev/mcp
+- [vibo-local-v0.9.2.zip](https://github.com/Bryce12322/vibo/releases/download/v0.9.2/vibo-local-v0.9.2.zip)
+- [SHA256SUMS.txt](https://github.com/Bryce12322/vibo/releases/download/v0.9.2/SHA256SUMS.txt)
 
-Required permissions, manual configuration or a new conversation may still be needed in the host. Do not claim a working connection until the tools are actually available. Do not silently overwrite an existing local setup or upload its records.
+Expected SHA256
+`45eeeefd8c1d6b6244253e3cf42ca9b162f6fc6839fa9540681694e5a7a5a491`
 
-宿主要求的授权、手动设置或开启新对话仍可能需要用户操作。必须验证工具实际可调用后才能宣布接入完成。已有本地安装和项目记录不得静默覆盖或迁移。
+校验失败时停止。安装器未做 Apple 签名或公证，按系统正常权限流程操作。
 
-## Local version / 本地版
+## 验证范围
 
-The rest of this document applies **only when the user explicitly chooses local 0.9.1 on macOS + Codex**.
+59 项自动测试通过，包括安装升级、稳定项目、批量提交、回滚、多项目隔离、检查和恢复。WorkBuddy 5.11.3 已在已安装技能页面实际发现并启用 track-project。多轮开发、跨对话报告及内置开页仍待真实宿主完整验收。
 
-以下步骤**仅适用于用户明确选择 macOS + Codex 的 0.9.1 本地版**。
-
-Users can ask / 用户可以直接说：
-
-> Install Vibo for me from https://github.com/Bryce12322/vibo — download, verify, unzip and install its Codex skill.
-
-> 帮我安装 Vibo：https://github.com/Bryce12322/vibo，请自动完成下载、校验、解压和 Skill 安装。
-
-## For coding agents / 给 Codex 的安装步骤
-
-When a user asks to install Vibo, perform the steps below using available tools and the user's granted permissions. Complete the download and extraction yourself rather than asking the user to do them manually. If the host requires network or local-file installation approval, request it and continue after approval.
-
-用户要求安装后，按以下步骤执行下载、校验、解压、安装和检查。宿主需要授权时，说明原因并等待用户批准；不要求用户先手动下载或解压。
-
-1. Check macOS and Node.js **22.13 or newer**. If the platform is unsupported or Node.js is missing/outdated, explain the requirement; do not silently install or replace system software. / 先检查系统与 Node.js 环境，缺少依赖时说明，不擅自更换系统环境。
-2. Download the complete **vibo-local-v0.9.1.zip** and **SHA256SUMS.txt** from the fixed release URLs below into a temporary directory. No GitHub login is needed. / 下载完整发行包与校验文件，不需要 GitHub 登录。
-3. Verify SHA256 before extracting or executing the installer. Stop on download or checksum failure. / 先校验，再解压执行；下载或校验失败时停止。
-4. Extract using macOS `ditto`, then run `bash "<extracted>/vibo-local/Install Vibo.command"`. This installs the complete `track-project` skill and bundled runtime into `~/.agents/skills/track-project` by default, backing up an existing installation. / 安装器包含完整运行文件，会备份旧版安装。
-5. Verify the installed CLI with `--help`; optionally run `doctor` to inspect installation. A first installation can report “no project yet” or “service not running”; those do not mean the skill installation failed. Do not create a project or start tracking unless the user also requested it. / 检查安装入口；首次没有项目或服务尚未启动是正常情况，不擅自开始跟踪。
-6. For the local dashboard, use `connect --open-link` / `open --open-link` and open the returned one-time URL in the host’s built-in browser first; use `--open` only for an explicit external-browser request or a real fallback. / 本地看板也优先使用宿主内置浏览器；`--open` 仅用于明确的外部浏览器请求或回退。\n\n7. Tell the user installation succeeded, where the skill was installed and how to enable it in their project. It should become available on a subsequent turn; if their Codex session has not discovered it, suggest a new chat or restart and `$track-project`. / 告知安装结果和启用方法；如未被宿主发现，再开启新对话或重启。
-
-Vibo is distributed as a **Codex skill**, rather than a marketplace extension. The repository root and GitHub-generated “Source code” archives contain distribution documentation, not the complete runtime. Do not install the repository root as a skill or download only `SKILL.md`.
-
-本仓库根目录及自动生成的 Source code 包是说明文件；完整 Skill 和运行文件在下面的发行安装包中。
-
-## Download URLs / 下载地址
-
-- Package: https://github.com/Bryce12322/vibo/releases/download/v0.9.1/vibo-local-v0.9.1.zip
-- Checksum: https://github.com/Bryce12322/vibo/releases/download/v0.9.1/SHA256SUMS.txt
-- Expected package SHA256: `7c64cd65f563211666fe89e43176258d1087066ba0b9d848e1cd10fd14258731`
-
-## Reference commands / 可执行步骤
-
-Run after checking macOS and Node.js. The installer is not Apple-signed or notarized. This does not require disabling macOS security settings.
-
-确认 macOS 和 Node.js 环境后执行。当前安装器未做 Apple 签名或公证；无须关闭 macOS 安全设置。
-
-```bash
-(
-  set -e
-  node -e 'const [a,b]=process.versions.node.split(".").map(Number); if(a<22||(a===22&&b<13)) { console.error("Vibo requires Node.js 22.13+"); process.exit(1); }'
-  vibo_install_dir=$(mktemp -d "${TMPDIR:-/tmp}/vibo-install.XXXXXX")
-  trap 'rm -rf -- "$vibo_install_dir"' EXIT
-  cd "$vibo_install_dir"
-  vibo_release_url='https://github.com/Bryce12322/vibo/releases/download/v0.9.1'
-  curl --fail --location --silent --show-error --connect-timeout 10 --max-time 60 "$vibo_release_url/vibo-local-v0.9.1.zip" --output vibo-local-v0.9.1.zip
-  curl --fail --location --silent --show-error --connect-timeout 10 --max-time 60 "$vibo_release_url/SHA256SUMS.txt" --output SHA256SUMS.txt
-  shasum -a 256 -c SHA256SUMS.txt
-  ditto -x -k vibo-local-v0.9.1.zip unpacked
-  bash "unpacked/vibo-local/Install Vibo.command"
-  node --disable-warning=ExperimentalWarning "${FLOW_SKILL_DIR:-$HOME/.agents/skills}/track-project/scripts/flow.mjs" --help
-)
-```
-
-`FLOW_SKILL_DIR` can select the host's actual skill directory when required. Keep one active installation; do not create duplicate copies in several skill-discovery roots. Installing or updating Vibo does not require reading, exporting or deleting the user's existing project database or connection files.
-
-如宿主需要其他 Skill 安装目录，可用 `FLOW_SKILL_DIR` 指定；不要在多个发现目录重复安装。安装或更新无须读取、导出或删除已有项目数据库及连接文件。
-
-## Verification / 已验证的范围
-
-The public 0.9.1 package was downloaded without authentication and tested on macOS with Node.js 22.17.1 in isolated install/data directories. Checksum, extraction, installer, packaged CLI, local service and diagnostics passed. Reinstalling preserved the sample project. Existing user installations and private records were untouched.
-
-公开包已在 macOS、Node.js 22.17.1 的隔离目录完成下载到启动的验证，重复安装保留测试项目。验证的是 Codex 可执行的安装流程，不保证每个 Codex 版本都会自动加载 Skill，也不承诺省略宿主的授权提示。
+数据位于 ~/Library/Application Support/Qingzhou/，安装更新不需要读取或上传长期凭据。
