@@ -1,8 +1,31 @@
-# Connect Vibo online / 连接 Vibo 线上版
+# Vibo 接入指南 / Setup
 
-This guide is for coding agents acting on the user's request to connect Vibo. Use the online service by default; install the local 0.9.1 package only if the user explicitly chooses the local version.
+默认采用本地 Skill＋CLI。先按 [INSTALL.md](INSTALL.md)安装完整 0.9.2 包，读取返回的 Skill，用现有命令执行能力保存计划并打开看板。
 
-本指南供编码 Agent 执行用户的 Vibo 接入请求。默认连接线上版；只有用户明确选择本地版时，才执行 [本地安装步骤](INSTALL.md)。不要将添加连接、加载规则和启用项目跟踪混为同一件事。
+本地首次体验无需添加远程 MCP、信任连接器或 OAuth 授权。命令权限按宿主提示处理。已有 .vibo/project.json 的 mode 为 cloud 时保留原关联，用户明确选择迁移后再处理，不自动切换或双写。
+
+## 本地标准流程
+
+1. 检查已有安装和项目关联。
+2. 读取安装后的 SKILL.md，context 恢复记录，再 connect 建立工作会话。
+3. submit 一次保存目标、事项与实际事件，核对返回记录。
+4. open --open-link 后优先内置浏览器开页。
+5. 正常开发中增量汇报，新对话恢复相同项目。
+
+出错执行一次 doctor，根据明确错误处理，避免反复授权或重启。首次先显示当前计划，历史按需迁移。
+
+<a id="online"></a>
+## 按需使用线上版 / Optional online
+
+以下仅用于明确选择线上版的项目。已有线上关联继续保留，本地与云端没有自动双向同步。
+
+WorkBuddy 线上接入目前在 OAuth 客户端注册阶段遇到回调兼容错误，授权页可能无法打开。该问题仍待修复，请用本地入口进行首次试用。
+
+### Online configuration
+
+This guide is for coding agents acting on the user's request to connect Vibo. This section applies only to explicit online use. Local 0.9.2 is the default onboarding route.
+
+本指南供编码 Agent 执行用户的 Vibo 接入请求。此节只用于明确选择线上版时。默认体验请执行 [本地安装步骤](INSTALL.md)。不要将添加连接、加载规则和启用项目跟踪混为同一件事。
 
 ## Service / 服务信息
 
