@@ -1,6 +1,6 @@
 # 安装 Vibo / Install Vibo
 
-默认安装 **0.9.2 本地体验版**，使用 Skill＋CLI。macOS，需要 Node.js 22.13+。无需配置 MCP 连接器或 OAuth。明确选择线上版或已有 mode:cloud 关联时，按 [线上说明](CONNECT.md#online)处理。
+默认安装 **0.9.3 本地体验版**，使用 Skill＋CLI。macOS，需要 Node.js 22.13+。无需配置 MCP 连接器或 OAuth。明确选择线上版或已有 mode:cloud 关联时，按 [线上说明](CONNECT.md#online)处理。
 
 > 请阅读 https://github.com/Bryce12322/vibo/blob/main/INSTALL.md ，自动下载、校验并安装适配当前工具的 Vibo 本地版，接着读取汇报规则、同步当前项目的已有计划，优先在内置浏览器打开看板，并在后续开发中主动更新真实进展。
 
@@ -19,13 +19,15 @@
 
 ## 下载与校验 / Downloads
 
-- [vibo-local-v0.9.2.zip](https://github.com/Bryce12322/vibo/releases/download/v0.9.2/vibo-local-v0.9.2.zip)
-- [SHA256SUMS.txt](https://github.com/Bryce12322/vibo/releases/download/v0.9.2/SHA256SUMS.txt)
+- [vibo-local-v0.9.3.zip](https://github.com/Bryce12322/vibo/releases/download/v0.9.3/vibo-local-v0.9.3.zip)
+- [SHA256SUMS.txt](https://github.com/Bryce12322/vibo/releases/download/v0.9.3/SHA256SUMS.txt)
 
 Expected SHA256
-`45eeeefd8c1d6b6244253e3cf42ca9b162f6fc6839fa9540681694e5a7a5a491`
+`55a6caac0af567903112ace589c9ae4a4e0b326e61952473b9c6ea9db4358460`
 
 校验失败时停止。安装器未做 Apple 签名或公证，按系统正常权限流程操作。
+
+0.9.3 修复本地页面资源遗漏导致的空白看板，回归检查覆盖源码与发行包的页面脚本依赖。升级保留原项目数据。
 
 ## 验证范围
 
