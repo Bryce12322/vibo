@@ -1,6 +1,6 @@
 # Vibo 接入指南 / Setup
 
-默认采用本地 Skill＋CLI。先按 [INSTALL.md](INSTALL.md)安装完整 0.9.2 包，读取返回的 Skill，用现有命令执行能力保存计划并打开看板。
+默认采用本地 Skill＋CLI。先按 [INSTALL.md](INSTALL.md)安装完整 0.9.3 包，读取返回的 Skill，用现有命令执行能力保存计划并打开看板。
 
 本地首次体验无需添加远程 MCP、信任连接器或 OAuth 授权。命令权限按宿主提示处理。已有 .vibo/project.json 的 mode 为 cloud 时保留原关联，用户明确选择迁移后再处理，不自动切换或双写。
 
@@ -23,7 +23,7 @@ WorkBuddy 线上接入目前在 OAuth 客户端注册阶段遇到回调兼容错
 
 ### Online configuration
 
-This guide is for coding agents acting on the user's request to connect Vibo. This section applies only to explicit online use. Local 0.9.2 is the default onboarding route.
+This guide is for coding agents acting on the user's request to connect Vibo. This section applies only to explicit online use. Local 0.9.3 is the default onboarding route.
 
 本指南供编码 Agent 执行用户的 Vibo 接入请求。此节只用于明确选择线上版时。默认体验请执行 [本地安装步骤](INSTALL.md)。不要将添加连接、加载规则和启用项目跟踪混为同一件事。
 
