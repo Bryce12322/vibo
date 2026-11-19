@@ -2,7 +2,7 @@
 
 **See where your AI coding project stands, what remains and what needs you.**
 
-[简体中文](README.zh-CN.md) · [Install](INSTALL.md) · [Local preview 0.9.2](https://github.com/Bryce12322/vibo/releases/tag/v0.9.2)
+[简体中文](README.zh-CN.md) · [Install](INSTALL.md) · [Local preview 0.9.3](https://github.com/Bryce12322/vibo/releases/tag/v0.9.3)
 
 ## 一句话安装并开始使用 / Install and start with one message
 
